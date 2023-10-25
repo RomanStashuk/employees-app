@@ -1,6 +1,7 @@
-import './employees-list-item.css';
-import classNames from 'classnames';
 import { Component } from 'react';
+import classNames from 'classnames';
+
+import './employees-list-item.css';
 
 class EmployeesListItem extends Component {
   constructor(props) {
