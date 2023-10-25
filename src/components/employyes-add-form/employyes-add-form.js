@@ -2,7 +2,15 @@ import './employees-add-form.css';
 import { Component } from 'react';
 
 class EmployeesAddForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      salary: '',
+    };
+  }
   render() {
+    const { name, salary } = this.state;
     return (
       <div className="app-add-form">
         <h3>Добавьте нового сотрудника</h3>
