@@ -46,10 +46,14 @@ class App extends Component {
 
   render() {
     const { data } = this.state;
-
+    const totalEmploees = data.length;
+    const increasedEmploees = data.filter((item) => item.increase).length;
     return (
       <div className="app">
-        <AppInfo />
+        <AppInfo
+          totalEmploees={totalEmploees}
+          increasedEmploees={increasedEmploees}
+        />
 
         <div className="search-panel">
           <SearchPanel />
