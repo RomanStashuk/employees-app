@@ -23,6 +23,7 @@ class App extends Component {
         },
         { name: 'James M.', salary: 3650, increase: false, rise: true, id: 3 },
       ],
+      term: '',
     };
     this.maxId = 4;
   }
@@ -59,10 +60,25 @@ class App extends Component {
     }));
   };
 
+  searchEmp = (items, term) => {
+    if (!term.length) {
+      return items;
+    }
+    return items.filter((item) => {
+      return item.name.includes(term);
+    });
+  };
+
+  onUpdateSearch = (term) => {
+    this.setState({ term });
+  };
+
   render() {
-    const { data } = this.state;
+    const { data, term } = this.state;
     const totalEmployees = data.length;
     const increasedEmployees = data.filter((item) => item.increase).length;
+    const visibleData = this.searchEmp(data, term);
+
     return (
       <div className="app">
         <AppInfo
@@ -71,12 +87,12 @@ class App extends Component {
         />
 
         <div className="search-panel">
-          <SearchPanel />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           <AppFilter />
         </div>
 
         <EmployeesList
-          data={data}
+          data={visibleData}
           onDelete={this.deleteItem}
           onToggleProp={this.onToggleProp}
         />
